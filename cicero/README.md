@@ -10,12 +10,17 @@ The chaincode itself is under the `chaincode` directory of this repository, here
 
 To get started you need to `git clone` or download this fork of the official Hyperledger Fabric samples repository. A Cicero client and chaincode sample have been added.
 
-You will need up to date versions of `git` and `node` for this sample to work. The sample has only been tested on Mac OS X. Pull requests welcome for other platforms.
+You will need up to date versions of `git` and `node` for this sample to work. The sample has only been tested on Ubuntu 20.04 LTS. Pull requests welcome for other platforms.
 
 ## Running
 
+You can simply run the script:
+``` ./enroll.sh ``` 
+OR run the commands below:
+
+
 ```
-./startFabric node
+./startFabric.sh
 ```
 
 Wait for 2-3 minutes while HLF starts. Next install the npm dependencies for the client code:
@@ -41,15 +46,15 @@ The HelloWorld template is downloaded from https://templates.accordproject.org a
 with the contract text and the initial state of the contract.
 
 ```
-node deploy.js helloworld.cta sample.txt
+node deploy.js helloworld.cta sample.md
 ```
 
-Where `sample.txt` is a file containing contract text that conforms to the template's grammar. See the template source for an example.
+Where `sample.md` is a file containing contract text that conforms to the template's grammar. See the template source for an example.
 
 You should see output similar to this:
 
 ```
-$ node deploy.js helloworld.cta sample.txt
+$ node deploy.js helloworld.cta sample.md
 Store path:/Users/matt/dev/clauseHQ/fabric-samples/cicero/hfc-key-store
 (node:22481) DeprecationWarning: grpc.load: Use the @grpc/proto-loader module with grpc.loadPackageDefinition instead
 Successfully loaded user1 from persistence
@@ -92,6 +97,6 @@ The reponse payload shows that the logic of the template has run, combining data
 
 ## Editing Chaincode
 
-If you would like to make changes to the cicero chaincode be aware that Docker caches the docker image for the chaincode. If you edit the source and run `./startFabric` you will *not* see your changes.
+If you would like to make changes to the cicero chaincode be aware that Docker caches the docker image for the chaincode. If you edit the source and run `./startFabric.sh` you will *not* see your changes.
 
 For your code changes to take effect you need to `docker stop` the peer (use `docker ps` to get the container id) and then `docker rmi -f` your docker chaincode image. The image name should look something like `dev-peer0.org1.example.com-cicero-1.0-598263b3afa0267a29243ec2ab8d19b7d2016ac628f13641ed1822c4241c5734`.
